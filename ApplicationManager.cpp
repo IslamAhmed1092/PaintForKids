@@ -1,5 +1,9 @@
 #include "ApplicationManager.h"
 #include "Actions\AddRectAction.h"
+#include "Actions\AddLineAction.h"
+#include "Actions\AddTriAction.h"
+#include "Actions\AddEllipseAction.h"
+#include "Actions\AddRhombusAction.h"
 
 
 //Constructor
@@ -36,17 +40,21 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DRAW_RECT:
 			pAct = new AddRectAction(this);
 			break;
-
 		case DRAW_LINE:
 			///create AddLineAction here
-
+			pAct = new AddLineAction(this);
 			break;
-
+		case DRAW_ELLIPSE:
+			pAct = new AddEllipseAction(this);
+			break;
+		case DRAW_RHOMBUS:
+			pAct = new AddRhombusAction(this);
+			break;
+		case DRAW_TRI:
+			pAct = new AddTriAction(this);
+			break;
 		case EXIT:
-			///create ExitAction here
-			
 			break;
-		
 		case STATUS:	//a click on the status bar ==> no action
 			return;
 	}

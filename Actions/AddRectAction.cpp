@@ -18,12 +18,18 @@ void AddRectAction::ReadActionParameters()
 	pOut->PrintMessage("New Rectangle: Click at first corner");
 	
 	//Read 1st corner and store in point P1
+	do
+	{
 	pIn->GetPointClicked(P1.x, P1.y);
+	}while  (P1.y<UI.ToolBarHeight);
 
 	pOut->PrintMessage("New Rectangle: Click at second corner");
 
 	//Read 2nd corner and store in point P2
+	do
+	{
 	pIn->GetPointClicked(P2.x, P2.y);
+	}while  (P2.y<UI.ToolBarHeight);
 
 	RectGfxInfo.isFilled = false;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
