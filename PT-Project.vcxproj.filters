@@ -175,6 +175,12 @@
     <ClCompile Include="Actions\SelectAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\SwitchToPlayAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\SwitchToDrawAction.cpp">
+      <Filter>Action Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -287,6 +293,12 @@
       <Filter>Figures Classes</Filter>
     </ClInclude>
     <ClInclude Include="Actions\SelectAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SwitchToPlayAction.h">
+      <Filter>Action Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SwitchToDrawAction.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
   </ItemGroup>

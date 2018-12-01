@@ -5,6 +5,8 @@
 #include "Actions\AddEllipseAction.h"
 #include "Actions\AddRhombusAction.h"
 #include "Actions\SelectAction.h"
+#include "Actions\SwitchToPlayAction.h"
+#include "Actions\SwitchToDrawAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -62,6 +64,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 				SelectedFig->SetSelected(false);
 				SelectedFig = NULL;
 			}
+			break;
+		case TO_PLAY:
+			pAct = new SwitchToPlayAction(this);
+			break;
+		case TO_DRAW:
+			pAct = new SwitchToDrawAction(this);
 			break;
 		case EXIT:
 			break;
