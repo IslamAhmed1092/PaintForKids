@@ -10,6 +10,7 @@ private:
 	Point Corner2;
 public:
 	CLine(Point , Point, GfxInfo FigureGfxInfo );
+	virtual bool check(int, int);
 	virtual void Draw(Output* pOut) const;
 };
 

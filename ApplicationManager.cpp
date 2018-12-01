@@ -4,7 +4,7 @@
 #include "Actions\AddTriAction.h"
 #include "Actions\AddEllipseAction.h"
 #include "Actions\AddRhombusAction.h"
-
+#include "Actions\SelectAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -12,7 +12,7 @@ ApplicationManager::ApplicationManager()
 	//Create Input and output
 	pOut = new Output;
 	pIn = pOut->CreateInput();
-	
+	SelectedFig = NULL;
 	FigCount = 0;
 		
 	//Create an array of figure pointers and set them to NULL		
@@ -53,6 +53,16 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DRAW_TRI:
 			pAct = new AddTriAction(this);
 			break;
+		case SELECT:
+			pAct = new SelectAction(this);
+			break;
+		case DRAWING_AREA:
+			if (SelectedFig != NULL)
+			{
+				SelectedFig->SetSelected(false);
+				SelectedFig = NULL;
+			}
+			break;
 		case EXIT:
 			break;
 		case STATUS:	//a click on the status bar ==> no action
@@ -83,11 +93,23 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 	//If a figure is found return a pointer to it.
 	//if this point (x,y) does not belong to any figure return NULL
 
-
+	for (int i = FigCount - 1; i >= 0; i--)
+		if(FigList[i]->check(x, y))
+			return FigList[i];
+		
 	//Add your code here to search for a figure given a point x,y	
 	//Remember that ApplicationManager only calls functions do NOT implement it.
 
 	return NULL;
+}
+void ApplicationManager::SelectFig(CFigure* pFig)
+{
+	SelectedFig = pFig;
+}
+
+CFigure *ApplicationManager::GetSelected()
+{
+	return SelectedFig;
 }
 //==================================================================================//
 //							Interface Management Functions							//
