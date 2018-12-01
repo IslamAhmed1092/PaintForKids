@@ -60,3 +60,8 @@ void CTri::Save(ofstream &OutFile)
 		+ "   " + to_string(Corner3.x) + "    " + to_string(Corner3.y) + "    " 
 		+ StringColor(FigGfxInfo.DrawClr) + "     " +  filled + "\n";
 }
+
+string CTri::Type()
+{
+	return "TRIANGLE";
+}

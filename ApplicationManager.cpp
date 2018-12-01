@@ -8,6 +8,7 @@
 #include "Actions\SwitchToPlayAction.h"
 #include "Actions\SwitchToDrawAction.h"
 #include "Actions\SaveAction.h"
+#include "Actions\SaveTypeAction.h"
 #include "GUI\UI_Info.h"
 
 
@@ -66,8 +67,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			{
 				SelectedFig->SetSelected(false);
 				SelectedFig = NULL;
-				pOut->ClearStatusBar();
 			}
+			pOut->ClearStatusBar();
 			break;
 		case TO_PLAY:
 			pAct = new SwitchToPlayAction(this);
@@ -77,6 +78,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case SAVE:
 			pAct = new SaveAction(this);
+			break;
+		case SAVE_BY_TYPE:
+			pAct = new SaveTypeAction(this);
 			break;
 		case EXIT:
 			break;
@@ -134,6 +138,23 @@ void ApplicationManager::SaveAll(ofstream &OutFile)
 	for (int i = 0; i < FigCount; i++)
 	{
 		FigList[i]->Save(OutFile);
+	}
+}
+
+void ApplicationManager::SaveType(ofstream &OutFile, string type)
+{
+	int typecount = 0;
+	for (int i = 0; i < FigCount; i++)
+	{
+		if(FigList[i]->Type() == type)
+			typecount++;
+	}
+	OutFile << StringColor(UI.DrawColor) + "    "  + StringColor(UI.FillColor) + "\n";
+	OutFile << to_string(typecount) + "\n";
+	for (int i = 0; i < FigCount; i++)
+	{
+		if(FigList[i]->Type() == type)
+			FigList[i]->Save(OutFile);
 	}
 }
 //==================================================================================//

@@ -37,6 +37,7 @@ public:
 	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
 	virtual bool check(int, int) = 0;
 	virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
+	virtual string Type() = 0;
 };
 
 //global function

@@ -133,6 +133,7 @@
     <ClCompile Include="Actions\AddRhombusAction.cpp" />
     <ClCompile Include="Actions\AddTriAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
+    <ClCompile Include="Actions\SaveTypeAction.cpp" />
     <ClCompile Include="Actions\SelectAction.cpp" />
     <ClCompile Include="Actions\SwitchToDrawAction.cpp" />
     <ClCompile Include="Actions\SwitchToPlayAction.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="Actions\AddRhombusAction.h" />
     <ClInclude Include="Actions\AddTriAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />
+    <ClInclude Include="Actions\SaveTypeAction.h" />
     <ClInclude Include="Actions\SelectAction.h" />
     <ClInclude Include="Actions\SwitchToDrawAction.h" />
     <ClInclude Include="Actions\SwitchToPlayAction.h" />

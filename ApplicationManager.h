@@ -40,6 +40,7 @@ public:
 	void SelectFig(CFigure*);
 	CFigure *GetSelected(); 
 	void SaveAll(ofstream &OutFile);
+	void SaveType(ofstream &OutFile, string);
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output

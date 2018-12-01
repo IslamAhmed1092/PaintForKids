@@ -37,3 +37,8 @@ void CLine::Save(ofstream &OutFile)
 		+ "   " + to_string(Corner2.x) + "    " + to_string(Corner2.y) + "    " 
 		+ StringColor(FigGfxInfo.DrawClr) + "     " +  filled + "\n" ;
 }
+
+string CLine::Type()
+{
+	return "LINE";
+}

@@ -14,6 +14,7 @@ public:
 	virtual bool check(int, int);
 	void Save(ofstream &OutFile);
 	void PrintInfo(Output* pOut);
+	virtual string Type();
 };
 
 #endif

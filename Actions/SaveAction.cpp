@@ -21,10 +21,12 @@ void SaveAction::ReadActionParameters()
 //Execute the action
 void SaveAction::Execute() 
 {
+	Output* pOut = pManager->GetOutput();
 	ReadActionParameters();
 	outFile.open(filename);
 	pManager->SaveAll(outFile);
 	outFile.close();
+	pOut->PrintMessage("Saved!");
 	
 }
 

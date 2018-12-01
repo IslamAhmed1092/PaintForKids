@@ -73,3 +73,8 @@ void CRhombus::Save(ofstream &OutFile)
 		+ "   " + to_string(Corner1.x) + "    " + to_string(Corner1.y) + "    " 
 		+ StringColor(FigGfxInfo.DrawClr) + "     " +  filled + "\n";
 }
+
+string CRhombus::Type()
+{
+	return "RHOMBUS";
+}
