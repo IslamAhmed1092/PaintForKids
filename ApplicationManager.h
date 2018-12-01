@@ -1,6 +1,9 @@
 #ifndef APPLICATION_MANAGER_H
 #define APPLICATION_MANAGER_H
+#include <iostream>
+using namespace std;
 
+#include <fstream>
 #include "DEFS.h"
 #include "Figures\CFigure.h"
 #include "GUI\input.h"
@@ -36,6 +39,7 @@ public:
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	void SelectFig(CFigure*);
 	CFigure *GetSelected(); 
+	void SaveAll(ofstream &OutFile);
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output

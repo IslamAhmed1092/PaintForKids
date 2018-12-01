@@ -50,3 +50,13 @@ void CTri::PrintInfo(Output* pOut)
 		+ StringColor(FigGfxInfo.DrawClr) ;
 	pOut->PrintMessage(info);
 }
+
+void CTri::Save(ofstream &OutFile)
+{
+	string filled = (FigGfxInfo.isFilled)? StringColor(FigGfxInfo.FillClr) : "NO_FILL";
+	OutFile << "TRIANG    " + to_string(id) 
+		+ "   " + to_string(Corner1.x) + "    " + to_string(Corner1.y) + "    " 
+		+ "   " + to_string(Corner2.x) + "    " + to_string(Corner2.y) + "    " 
+		+ "   " + to_string(Corner3.x) + "    " + to_string(Corner3.y) + "    " 
+		+ StringColor(FigGfxInfo.DrawClr) + "     " +  filled + "\n";
+}

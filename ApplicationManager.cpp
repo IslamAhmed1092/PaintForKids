@@ -7,6 +7,9 @@
 #include "Actions\SelectAction.h"
 #include "Actions\SwitchToPlayAction.h"
 #include "Actions\SwitchToDrawAction.h"
+#include "Actions\SaveAction.h"
+#include "GUI\UI_Info.h"
+
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -72,6 +75,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case TO_DRAW:
 			pAct = new SwitchToDrawAction(this);
 			break;
+		case SAVE:
+			pAct = new SaveAction(this);
+			break;
 		case EXIT:
 			break;
 		case STATUS:	//a click on the status bar ==> no action
@@ -119,6 +125,16 @@ void ApplicationManager::SelectFig(CFigure* pFig)
 CFigure *ApplicationManager::GetSelected()
 {
 	return SelectedFig;
+}
+
+void ApplicationManager::SaveAll(ofstream &OutFile)
+{
+	OutFile << StringColor(UI.DrawColor) + "    "  + StringColor(UI.FillColor) + "\n";
+	OutFile << to_string(FigCount) + "\n";
+	for (int i = 0; i < FigCount; i++)
+	{
+		FigList[i]->Save(OutFile);
+	}
 }
 //==================================================================================//
 //							Interface Management Functions							//

@@ -26,3 +26,11 @@ void CEllipse::PrintInfo(Output* pOut)
 		+ StringColor(FigGfxInfo.DrawClr) ;
 	pOut->PrintMessage(info);
 }
+
+void CEllipse::Save(ofstream &OutFile)
+{
+	string filled = (FigGfxInfo.isFilled)? StringColor(FigGfxInfo.FillClr) : "NO_FILL";
+	OutFile << "ELLIPSE   " + to_string(id) 
+		+ "   " + to_string(Corner1.x) + "    " + to_string(Corner1.y) + "    " 
+		+ StringColor(FigGfxInfo.DrawClr) + "     " +  filled + "\n" ;
+}

@@ -28,3 +28,12 @@ void CLine::PrintInfo(Output* pOut)
 		+ StringColor(FigGfxInfo.DrawClr) ;
 	pOut->PrintMessage(info);
 }
+
+void CLine::Save(ofstream &OutFile)
+{
+	string filled = (FigGfxInfo.isFilled)? StringColor(FigGfxInfo.FillClr) : "NO_FILL";
+	OutFile << "LINE   " + to_string(id) 
+		+ "   " + to_string(Corner1.x) + "    " + to_string(Corner1.y) + "    " 
+		+ "   " + to_string(Corner2.x) + "    " + to_string(Corner2.y) + "    " 
+		+ StringColor(FigGfxInfo.DrawClr) + "     " +  filled + "\n" ;
+}

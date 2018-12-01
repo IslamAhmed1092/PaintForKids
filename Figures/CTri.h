@@ -14,6 +14,7 @@ public:
 	CTri(Point , Point,Point, GfxInfo FigureGfxInfo );
 	virtual bool check(int, int);
 	virtual void Draw(Output* pOut) const;
+	void Save(ofstream &OutFile);
 	void PrintInfo(Output* pOut);
 };
 

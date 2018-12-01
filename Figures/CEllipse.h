@@ -12,6 +12,7 @@ public:
 	CEllipse(Point , GfxInfo FigureGfxInfo );
 	virtual void Draw(Output* pOut) const;
 	virtual bool check(int, int);
+	void Save(ofstream &OutFile);
 	void PrintInfo(Output* pOut);
 };
 

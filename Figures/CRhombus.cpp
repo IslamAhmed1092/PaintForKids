@@ -65,3 +65,11 @@ void CRhombus::PrintInfo(Output* pOut)
 		+ StringColor(FigGfxInfo.DrawClr) ;
 	pOut->PrintMessage(info);
 }
+
+void CRhombus::Save(ofstream &OutFile)
+{
+	string filled = (FigGfxInfo.isFilled)? StringColor(FigGfxInfo.FillClr) : "NO_FILL";
+	OutFile << "Rhombus   " + to_string(id) 
+		+ "   " + to_string(Corner1.x) + "    " + to_string(Corner1.y) + "    " 
+		+ StringColor(FigGfxInfo.DrawClr) + "     " +  filled + "\n";
+}
