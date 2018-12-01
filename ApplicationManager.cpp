@@ -63,6 +63,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			{
 				SelectedFig->SetSelected(false);
 				SelectedFig = NULL;
+				pOut->ClearStatusBar();
 			}
 			break;
 		case TO_PLAY:

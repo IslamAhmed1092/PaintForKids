@@ -2,6 +2,7 @@
 
 CEllipse::CEllipse(Point P1, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
+	id = ID;
 	Corner1 = P1;
 }
 	
@@ -16,4 +17,12 @@ bool CEllipse::check(int x, int y)
 {
 	int h = Corner1.x, k = Corner1.y, a = 100, b = 50; 
 	return (pow((x - h), 2) / pow(a, 2)) + (pow((y - k), 2) / pow(b, 2)) <= 1;
+}
+
+void CEllipse::PrintInfo(Output* pOut)
+{
+	string info = "Ellipse : id = " + to_string(id) 
+		+ ", center(" + to_string(Corner1.x) + "," + to_string(Corner1.y) + ") , color = " 
+		+ StringColor(FigGfxInfo.DrawClr) ;
+	pOut->PrintMessage(info);
 }

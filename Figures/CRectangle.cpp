@@ -2,6 +2,7 @@
 
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
+	id = ID;
 	Corner1 = P1;
 	Corner2 = P2;
 }
@@ -42,3 +43,12 @@ bool CRectangle::check(int x, int y)
        is same as A */
     return (A == A1 + A2 + A3 + A4); 
 } 
+
+void CRectangle::PrintInfo(Output* pOut)
+{
+	string info = "Rectangle : id = " + to_string(id) 
+		+ ", corner1(" + to_string(Corner1.x) + "," + to_string(Corner1.y) + ") , corner2(" 
+		+ to_string(Corner2.x) + "," + to_string(Corner2.y) + ") , color = "
+		+ StringColor(FigGfxInfo.DrawClr) ;
+	pOut->PrintMessage(info);
+}

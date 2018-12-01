@@ -2,6 +2,7 @@
 
 CTri::CTri(Point P1, Point P2,Point p3, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
+	id = ID;
 	Corner1 = P1;
 	Corner2 = P2;
 	Corner3= p3;
@@ -39,3 +40,13 @@ bool CTri::check(int x, int y)
    /* Check if sum of A1, A2 and A3 is same as A */ 
 	return (A == A1 + A2 + A3); 
 } 
+
+void CTri::PrintInfo(Output* pOut)
+{
+	string info = "Triangle : id = " + to_string(id) 
+		+ ", corner1(" + to_string(Corner1.x) + "," + to_string(Corner1.y) + ") , corner2(" 
+		+ to_string(Corner2.x) + "," + to_string(Corner2.y) + ") , corner3("
+		+ to_string(Corner3.x) + "," + to_string(Corner3.y) + ") , color = "
+		+ StringColor(FigGfxInfo.DrawClr) ;
+	pOut->PrintMessage(info);
+}

@@ -1,7 +1,10 @@
 #include "CFigure.h"
 
+int CFigure::ID = 0;
+
 CFigure::CFigure(GfxInfo FigureGfxInfo)
 { 
+	++ID;
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
 }
@@ -21,3 +24,16 @@ void CFigure::ChngFillClr(color Fclr)
 	FigGfxInfo.FillClr = Fclr; 
 }
 
+string CFigure::StringColor(color clr)
+{
+	if (clr == RED)
+		return "RED";
+	else if(clr == WHITE)
+		return "WHITE";
+	else if(clr == BLUE)
+		return "BLUE";
+	else if (clr == GREEN)
+		return "GREEN";
+	else
+		return "BLACK";
+}

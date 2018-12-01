@@ -28,10 +28,12 @@ void SelectAction::Execute()
 	//This action needs to read some parameters first
 	ReadActionParameters();
 	CFigure* selected = pManager->GetFigure(p.x, p.y);
+	Output* pOut = pManager->GetOutput();
 	if(selected == NULL)
 	{
 		if(pManager->GetSelected() != NULL)
 		{
+			pOut->ClearStatusBar();
 			pManager->GetSelected()->SetSelected(false);
 			pManager->SelectFig(NULL);
 		}
@@ -42,6 +44,7 @@ void SelectAction::Execute()
 		{
 			selected->SetSelected(true);
 			pManager->SelectFig(selected);
+			selected->PrintInfo(pOut);
 		}
 		else
 		{
@@ -49,12 +52,14 @@ void SelectAction::Execute()
 			{
 				selected->SetSelected(false);
 				pManager->SelectFig(NULL);
+				pOut->ClearStatusBar();
 			}
 			else
 			{
 				pManager->GetSelected()->SetSelected(false);
 				selected->SetSelected(true);
 				pManager->SelectFig(selected);
+				selected->PrintInfo(pOut);
 			}
 			
 		}
