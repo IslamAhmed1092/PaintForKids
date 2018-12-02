@@ -9,6 +9,7 @@
 #include "Actions\SwitchToDrawAction.h"
 #include "Actions\SaveAction.h"
 #include "Actions\SaveTypeAction.h"
+#include "Actions\delfigAction.h"
 #include "GUI\UI_Info.h"
 
 
@@ -75,6 +76,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case TO_DRAW:
 			pAct = new SwitchToDrawAction(this);
+			break;
+		case DEL:
+			pAct=new delfigAction (this);
 			break;
 		case SAVE:
 			pAct = new SaveAction(this);
@@ -157,6 +161,27 @@ void ApplicationManager::SaveType(ofstream &OutFile, string type)
 			FigList[i]->Save(OutFile);
 	}
 }
+void ApplicationManager::delfigure(CFigure * dFig)
+{
+	int i;
+	for (i=FigCount-1; i >= 0; i--)
+	{
+		if(FigList[i]==dFig)
+		{
+			
+			delete FigList[i];
+			FigList[i]=NULL;
+			break;
+		}
+	}
+	for (i; i <FigCount-1; i++)
+	{
+		FigList[i]=FigList[i+1];
+	}
+	FigList[FigCount - 1] = NULL;
+	FigCount--;
+
+}
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
@@ -164,6 +189,8 @@ void ApplicationManager::SaveType(ofstream &OutFile, string type)
 //Draw all figures on the user interface
 void ApplicationManager::UpdateInterface() const
 {	
+	Output * pOut = GetOutput();
+	pOut->ClearDrawArea();
 	for(int i=0; i<FigCount; i++)
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
 }

@@ -41,6 +41,7 @@ public:
 	CFigure *GetSelected(); 
 	void SaveAll(ofstream &OutFile);
 	void SaveType(ofstream &OutFile, string);
+	void delfigure(CFigure *);
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
