@@ -1,7 +1,7 @@
 #include "CFigure.h"
 
 int CFigure::ID = 0;
-
+CFigure::CFigure(){}
 CFigure::CFigure(GfxInfo FigureGfxInfo)
 { 
 	++ID;
@@ -11,10 +11,12 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 
 void CFigure::SetSelected(bool s)
 {	Selected = s; }
-
 bool CFigure::IsSelected() const
 {	return Selected; }
-
+void CFigure::notfilled() 
+{
+	FigGfxInfo.isFilled=false;
+}
 void CFigure::ChngDrawClr(color Dclr)
 {	FigGfxInfo.DrawClr = Dclr; }
 
@@ -23,6 +25,7 @@ void CFigure::ChngFillClr(color Fclr)
 	FigGfxInfo.isFilled = true;
 	FigGfxInfo.FillClr = Fclr; 
 }
+
 
 string StringColor(color clr)
 {

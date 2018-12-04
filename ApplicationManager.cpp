@@ -11,8 +11,9 @@
 #include "Actions\SaveTypeAction.h"
 #include "Actions\delfigAction.h"
 #include "GUI\UI_Info.h"
-
-
+#include "Actions\LoadAction.h"
+#include "Figures\CFigure.h"
+#define MAXSPACE 25
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -80,6 +81,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DEL:
 			pAct=new delfigAction (this);
 			break;
+		case LOAD:
+			pAct= new LoadAction (this);
+			break;
 		case SAVE:
 			pAct = new SaveAction(this);
 			break;
@@ -142,6 +146,17 @@ void ApplicationManager::SaveAll(ofstream &OutFile)
 	for (int i = 0; i < FigCount; i++)
 	{
 		FigList[i]->Save(OutFile);
+	}
+}
+void ApplicationManager::LoadAll(string * alldata)
+{
+	int count = atoi(alldata[1].c_str());
+	for (int i = 2; i <= count; i++)
+	{
+		//if (alldata[i].find("Line"))
+		
+	
+		//FigList[i]->Load(figdata);
 	}
 }
 

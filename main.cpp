@@ -14,7 +14,7 @@ int main()
 		ActType = AppManager.GetUserAction();
 
 		//Exexute the action
-		AppManager.ExecuteAction(ActType);
+    	AppManager.ExecuteAction(ActType);
 
 		//Update the interface
 		AppManager.UpdateInterface();	

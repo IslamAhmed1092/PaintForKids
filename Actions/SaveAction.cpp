@@ -13,7 +13,7 @@ void SaveAction::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	
-	pOut->PrintMessage("Enter file name: ");
+	pOut->PrintMessage("Enter file name : ");
 	filename = pIn->GetSrting(pOut) + ".txt";
 	pOut->ClearStatusBar();
 }

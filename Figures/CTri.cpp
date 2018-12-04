@@ -7,7 +7,8 @@ CTri::CTri(Point P1, Point P2,Point p3, GfxInfo FigureGfxInfo):CFigure(FigureGfx
 	Corner2 = P2;
 	Corner3= p3;
 }
-	
+
+CTri::CTri(){}	
 
 void CTri::Draw(Output* pOut) const
 {
@@ -65,3 +66,80 @@ string CTri::Type()
 {
 	return "TRIANGLE";
 }
+void CTri::Load(string filename,int pos) 
+ {
+	string STRING[200];
+	ifstream file;
+	file.open (filename);
+	int i=0;
+   if (file.is_open())
+   {
+        while(!file.eof()) // To get you all the lines.
+        {
+			
+	        getline(file,STRING[i]); // Saves the line in STRING.
+	        
+			if (i==pos)
+				break;
+			i++;
+        }
+	file.close();
+    }
+   	std::string str =STRING[i] ;
+	std::istringstream stm(str) ;
+	string word ;
+	string arr [10];
+	int k=0; 
+	while( stm >> word ) // read white-space delimited tokens one by one 
+	{
+	  arr[k]=word;
+	  k++;
+		// put word into array
+	}
+	this->id=stoi(arr[1]);
+	this->Corner1.x=stoi(arr[2]);
+	this->Corner1.y=stoi(arr[3]);
+	this->Corner2.x=stoi(arr[4]);
+	this->Corner2.y=stoi(arr[5]);
+	this->Corner3.x=stoi(arr[6]);
+	this->Corner3.y=stoi(arr[7]);
+	color col;
+	if (arr[8]=="BLUE")
+		col.setcolor(0, 0, 255);
+	else if (arr[8]=="RED")
+		col.setcolor(255, 0, 0);
+	else if (arr[8]=="BLACK")
+		col.setcolor(0, 0, 0);
+	else if (arr[8]=="WHITE")
+		col.setcolor(255, 255, 255);
+	else if (arr[8]=="GREEN")
+		col.setcolor(0, 255, 0);
+	this->ChngDrawClr(col);
+	this->SetSelected(false);
+	if (arr[9]=="NO_FILL")
+		this->ChngFillClr(NULL);
+	else if (arr[9]=="BLUE")
+	{
+			col.setcolor(0, 0, 255);
+		    this->ChngFillClr(col);
+	}
+	else if (arr[9]=="BLACK")
+	{	col.setcolor(0, 0, 0);
+				    this->ChngFillClr(col);
+
+	}
+	else if (arr[9]=="WHITE")
+		{col.setcolor(255, 255, 255);
+		    this->ChngFillClr(col);
+        }
+	else if (arr[9]=="GREEN")
+	{
+		col.setcolor(255, 255, 255);
+		    this->ChngFillClr(col);
+	}
+	else if (arr[9]=="RED")
+	{
+		col.setcolor(255, 0, 0);
+		    this->ChngFillClr(col);
+	}
+ }

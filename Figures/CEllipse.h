@@ -1,5 +1,5 @@
-#ifndef CLine_H
-#define CLine_H
+#ifndef CEllipse_H
+#define CEllipse_H
 
 #include "CFigure.h"
 
@@ -9,10 +9,14 @@ private:
 	int id;
 	Point Corner1;	
 public:
+
 	CEllipse(Point , GfxInfo FigureGfxInfo );
+	CEllipse();
 	virtual void Draw(Output* pOut) const;
 	virtual bool check(int, int);
 	void Save(ofstream &OutFile);
+	virtual void Load(string filename,int pos);
+
 	void PrintInfo(Output* pOut);
 	virtual string Type();
 };

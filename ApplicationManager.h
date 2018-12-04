@@ -40,6 +40,8 @@ public:
 	void SelectFig(CFigure*);
 	CFigure *GetSelected(); 
 	void SaveAll(ofstream &OutFile);
+	void LoadAll(string * );
+
 	void SaveType(ofstream &OutFile, string);
 	void delfigure(CFigure *);
 	// -- Interface Management Functions

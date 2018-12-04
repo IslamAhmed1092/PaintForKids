@@ -14,7 +14,7 @@ void SaveTypeAction::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	
-	pOut->PrintMessage("Choose a type to save");
+	pOut->PrintMessage("Choose a type to save.");
 	do
 	{
 		ActionType Act = pManager->GetUserAction();
