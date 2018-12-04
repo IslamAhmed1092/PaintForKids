@@ -27,7 +27,6 @@ void delfigAction::Execute()
 		pOut->ClearStatusBar();
 	}
 }
-
 delfigAction::~delfigAction(void)
 {
 

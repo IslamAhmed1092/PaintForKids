@@ -115,7 +115,9 @@ void CRectangle::Load(string filename,int pos)
 	this->ChngDrawClr(col);
 	this->Selected=false;
 	if (arr[7]=="NO_FILL")
-		this->ChngFillClr(NULL);
+	{
+		this->notfilled();
+	}
 	else if (arr[7]=="BLUE")
 	{
 					col=BLUE;;

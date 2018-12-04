@@ -129,6 +129,15 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 
 	return NULL;
 }
+void ApplicationManager::deletallfig()
+{
+	for (int i = FigCount - 1; i >= 0; i--)
+		{
+			delete FigList[i];
+			FigList[i]=NULL;
+			FigCount--;
+		}	
+}
 void ApplicationManager::SelectFig(CFigure* pFig)
 {
 	SelectedFig = pFig;

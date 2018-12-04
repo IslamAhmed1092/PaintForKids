@@ -7,7 +7,7 @@
 #include "..\ApplicationManager.h"
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
-
+#include "delfigAction.h"
 LoadAction::LoadAction(ApplicationManager *pApp):Action(pApp)
 {
 
@@ -34,7 +34,7 @@ void LoadAction::Execute()
 	file.open (filename);
 	int i=0;
     CFigure * fig[200];
-
+	bool empty=false; 
    if (file.is_open())
    {
         while(!file.eof()) // To get you all the lines.
@@ -51,8 +51,15 @@ void LoadAction::Execute()
 				pOut->PrintMessage("this file is empty    press ENTER to contiue");
 				pIn->GetSrting(pOut);
 				pOut->ClearStatusBar();
+				empty=true;
 				break;
 			}
+		 if (!empty)
+		 {
+			 pManager->deletallfig();
+			 pOut->ClearDrawArea();
+			 empty=true;
+		 }
 		   if (STRING[i].find("LINE")!=-1)
 				{
 				fig[j]=new CLine;

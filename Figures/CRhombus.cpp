@@ -128,7 +128,9 @@ void CRhombus::Load(string filename,int pos)
 	this->ChngDrawClr(col);
 	this->SetSelected(false);
 	if (arr[5]=="NO_FILL")
-		this->ChngFillClr(NULL);
+	{
+		this->notfilled();
+	}
 	else if (arr[5]=="BLUE")
 	{
 					col=BLUE;

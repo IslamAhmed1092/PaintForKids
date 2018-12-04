@@ -117,7 +117,9 @@ void CTri::Load(string filename,int pos)
 	this->ChngDrawClr(col);
 	this->SetSelected(false);
 	if (arr[9]=="NO_FILL")
-		this->ChngFillClr(NULL);
+	{
+		this->notfilled();
+	}
 	else if (arr[9]=="BLUE")
 	{
 			col.setcolor(0, 0, 255);
