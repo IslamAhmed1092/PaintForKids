@@ -10,6 +10,8 @@
 enum GUI_MODE	//Graphical user interface mode
 {
 	MODE_DRAW,	//Drawing mode (startup mode)
+	MODE_COLOR,
+	MODE_RESIZE,
 	MODE_PLAY	//Playing mode
 };
 
@@ -26,11 +28,6 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_SEl,		//Select figure item
 	ITM_DC,			//Change drawing colour item
 	ITM_FC,			//Change fill colour item
-	ITM_BLK,		//Black colour item
-	ITM_WHI,		//White colour item
-	ITM_BLU,		//Blue colour item
-	ITM_GRN,		//Green colour item
-	ITM_RED,		//Red colour item
 	ITM_CUT,		//Cut item
 	ITM_COPY,		//Copy item
 	ITM_PST,		//Paste item
@@ -39,6 +36,10 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_SBT,		//Save by type item
 	ITM_LOAD,		//Load item
 	ITM_SWON,		//Swich to play mode item
+	ITM_RZ,			//Resize item
+	ITM_VC,			//switch voice item
+	ITM_BACK,		//Send to back item
+	ITM_FRONT,		//Bring to front item
 	ITM_EXIT,		//Exit item
 	
 	DRAW_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
@@ -58,6 +59,36 @@ enum PlayMenuItem //The items of the Play menu (you should add more items)
 	
 };
 
+enum ColorMenuItem //The items of the Play menu (you should add more items)
+{
+	//Note: Items are ordered here as they appear in menu
+	//If you want to change the menu items order, change the order here
+	
+	ITM_BLK,		//Black colour item
+	ITM_WHI,		//White colour item
+	ITM_BLU,		//Blue colour item
+	ITM_GRN,		//Green colour item
+	ITM_RED,		//Red colour item	
+	ITM_DRAW1,
+
+	COLOR_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
+	
+};
+
+enum ResizeMenuItem //The items of the Play menu (you should add more items)
+{
+	//Note: Items are ordered here as they appear in menu
+	//If you want to change the menu items order, change the order here
+	
+	ITM_QR,
+	ITM_HF,
+	ITM_DL,
+	ITM_QL,
+	ITM_DRAW2,
+
+	Resize_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
+	
+};
 
 
 

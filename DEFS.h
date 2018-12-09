@@ -25,6 +25,14 @@ enum ActionType //The actions supported (you can add more if needed)
 	BL,			//Blue color
 	GRN,		//Green color
 	RD,			//Red color
+	X2,			//double figure size
+	X4,			//size figure * 4
+	X025,		//size figure * 0.25
+	X05,		//size figure * 0.5
+	RZ,			//Resize figure
+	VC,			//switch voice
+	BK,			//send to back
+	FT,			//bring to front
 	CUT,		//Cutting the selected figure
 	COPY,		//Copy the selected figure
 	PASTE,		//Paste the selected figure

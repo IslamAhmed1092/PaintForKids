@@ -12,7 +12,10 @@ public:
 	window* CreateWind(int, int, int , int) const; //creates the application window
 	void CreateDrawToolBar() const;	//creates Draw mode toolbar & menu
 	void CreatePlayToolBar() const;	//creates Play mode toolbar & menu
+	void CreateColorToolBar() const; //creates Color mode toolbar & menu
+	void CreateResizeToolBar() const;  //creates Resize mode toolbar & menu
 	void CreateStatusBar() const;	//create the status bar
+
 
 	Input* CreateInput() const; //creates a pointer to the Input object
 	void ClearToolBar() const;  //Clears the tool bar

@@ -97,11 +97,6 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_SEl] = "images\\MenuItems\\Select.jpg";
 	MenuItemImages[ITM_DC] = "images\\MenuItems\\DrawColor.jpg";
 	MenuItemImages[ITM_FC] = "images\\MenuItems\\FillColor.jpg";
-	MenuItemImages[ITM_BLK] = "images\\MenuItems\\Black.jpg";
-	MenuItemImages[ITM_WHI] = "images\\MenuItems\\White.jpg";
-	MenuItemImages[ITM_BLU] = "images\\MenuItems\\Blue.jpg";
-	MenuItemImages[ITM_GRN] = "images\\MenuItems\\Green.jpg";
-	MenuItemImages[ITM_RED] = "images\\MenuItems\\Red.jpg";
 	MenuItemImages[ITM_CUT] = "images\\MenuItems\\Cut.jpg";
 	MenuItemImages[ITM_COPY] = "images\\MenuItems\\Copy.jpg";
 	MenuItemImages[ITM_PST] = "images\\MenuItems\\Paste.jpg";
@@ -109,6 +104,10 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_SG] = "images\\MenuItems\\SaveGraph.jpg";
 	MenuItemImages[ITM_SBT] = "images\\MenuItems\\SaveByType.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Load.jpg";
+	MenuItemImages[ITM_VC] = "images\\MenuItems\\Voice.jpg";
+	MenuItemImages[ITM_RZ] = "images\\MenuItems\\Resize.jpg";
+	MenuItemImages[ITM_BACK] = "images\\MenuItems\\Back.jpg";
+	MenuItemImages[ITM_FRONT] = "images\\MenuItems\\Front.jpg";
 	MenuItemImages[ITM_SWON] = "images\\MenuItems\\SwitchPlay.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 
@@ -146,6 +145,49 @@ void Output::CreatePlayToolBar() const
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////
+
+void Output::CreateColorToolBar() const
+{
+	UI.InterfaceMode = MODE_COLOR;
+	string MenuItemImages[COLOR_ITM_COUNT];
+
+	MenuItemImages[ITM_BLK] = "images\\MenuItems\\Black.jpg";
+	MenuItemImages[ITM_WHI] = "images\\MenuItems\\White.jpg";
+	MenuItemImages[ITM_BLU] = "images\\MenuItems\\Blue.jpg";
+	MenuItemImages[ITM_GRN] = "images\\MenuItems\\Green.jpg";
+	MenuItemImages[ITM_RED] = "images\\MenuItems\\Red.jpg";
+	MenuItemImages[ITM_DRAW1] = "images\\MenuItems\\SwitchDraw.jpg";
+
+	for(int i=0; i<COLOR_ITM_COUNT; i++)
+		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+
+	pWind->SetPen(BLACK, 3);
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
+
+}
+
+ /////////////////////////////////////////////////////////////////////////////////////////
+
+void Output::CreateResizeToolBar() const
+{
+	UI.InterfaceMode = MODE_RESIZE;
+	string MenuItemImages[Resize_ITM_COUNT];
+
+	MenuItemImages[ITM_QR] = "images\\MenuItems\\x025.jpg";
+	MenuItemImages[ITM_HF] = "images\\MenuItems\\x05.jpg";
+	MenuItemImages[ITM_DL] = "images\\MenuItems\\x2.jpg";
+	MenuItemImages[ITM_QL] = "images\\MenuItems\\x4.jpg";
+	MenuItemImages[ITM_DRAW2] = "images\\MenuItems\\SwitchDraw.jpg";
+
+	for(int i=0; i<Resize_ITM_COUNT; i++)
+		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
+
+	pWind->SetPen(BLACK, 3);
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);	
+
+}
+
+ ///////////////////////////////////////////////////////////////////////////////////
 
 void Output::ClearDrawArea() const
 {
