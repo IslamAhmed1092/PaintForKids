@@ -132,11 +132,13 @@
     <ClCompile Include="Actions\AddLineAction.cpp" />
     <ClCompile Include="Actions\AddRhombusAction.cpp" />
     <ClCompile Include="Actions\AddTriAction.cpp" />
+    <ClCompile Include="Actions\BringFrontAction.cpp" />
     <ClCompile Include="Actions\delfigAction.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SaveTypeAction.cpp" />
     <ClCompile Include="Actions\SelectAction.cpp" />
+    <ClCompile Include="Actions\SendBackAction.cpp" />
     <ClCompile Include="Actions\SwitchToDrawAction.cpp" />
     <ClCompile Include="Actions\SwitchToPlayAction.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
@@ -192,11 +194,13 @@
     <ClInclude Include="Actions\AddLineAction.h" />
     <ClInclude Include="Actions\AddRhombusAction.h" />
     <ClInclude Include="Actions\AddTriAction.h" />
+    <ClInclude Include="Actions\BringFrontAction.h" />
     <ClInclude Include="Actions\delfigAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\SaveTypeAction.h" />
     <ClInclude Include="Actions\SelectAction.h" />
+    <ClInclude Include="Actions\SendBackAction.h" />
     <ClInclude Include="Actions\SwitchToDrawAction.h" />
     <ClInclude Include="Actions\SwitchToPlayAction.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />

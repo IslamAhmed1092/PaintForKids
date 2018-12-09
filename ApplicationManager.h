@@ -45,6 +45,8 @@ public:
 
 	void SaveType(ofstream &OutFile, string);
 	void delfigure(CFigure *);
+	void SendBack(CFigure *);
+	void BringFront(CFigure *);
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output

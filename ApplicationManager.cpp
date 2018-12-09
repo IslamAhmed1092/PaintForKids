@@ -13,6 +13,9 @@
 #include "GUI\UI_Info.h"
 #include "Actions\LoadAction.h"
 #include "Figures\CFigure.h"
+#include "Actions\BringFrontAction.h"
+#include "Actions\SendBackAction.h"
+
 #define MAXSPACE 25
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -89,6 +92,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case SAVE_BY_TYPE:
 			pAct = new SaveTypeAction(this);
+			break;
+		case BK:
+			pAct = new SendBackAction(this);
+			break;
+		case FT:
+			pAct = new BringFrontAction(this);
 			break;
 		case EXIT:
 			break;
@@ -205,6 +214,39 @@ void ApplicationManager::delfigure(CFigure * dFig)
 	FigList[FigCount - 1] = NULL;
 	FigCount--;
 
+}
+void ApplicationManager::SendBack(CFigure* pfigure)
+{
+	CFigure* temp = NULL;
+	for (int i = 0; i < FigCount; i++)
+	{
+		if(FigList[i] == pfigure)
+		{
+			temp = FigList[i];
+			for(i; i > 0; i--)
+				FigList[i] = FigList[i-1];
+			FigList[0] = temp;
+			temp = NULL;
+			break;
+		}
+	}
+}
+
+void ApplicationManager::BringFront(CFigure* pfigure)
+{
+	CFigure* temp = NULL;
+	for (int i = 0; i < FigCount; i++)
+	{
+		if(FigList[i] == pfigure)
+		{
+			temp = FigList[i];
+			for(i; i < FigCount - 1; i++)
+				FigList[i] = FigList[i+1];
+			FigList[FigCount-1] = temp;
+			temp = NULL;
+			break;
+		}
+	}
 }
 //==================================================================================//
 //							Interface Management Functions							//
