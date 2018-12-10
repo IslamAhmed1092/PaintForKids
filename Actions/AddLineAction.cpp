@@ -5,6 +5,8 @@
 
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
+#include <Windows.h>
+#include <MMSystem.h>
 
 AddLineAction::AddLineAction(ApplicationManager * pApp):Action(pApp)
 {}
@@ -14,6 +16,9 @@ void AddLineAction::ReadActionParameters()
 	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
+
+	if (pManager->getVoice())
+		PlaySound(TEXT("Line.wav"), NULL, SND_SYNC);
 
 	pOut->PrintMessage("New Line: Click at first corner");
 	

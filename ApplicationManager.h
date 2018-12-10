@@ -20,7 +20,7 @@ private:
 
 	CFigure* SelectedFig; //Pointer to the selected figure
 	CFigure* Clipboard;   //Pointer to the copied/cut figure
-
+	bool Voice;
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
@@ -42,7 +42,8 @@ public:
 	CFigure *GetSelected(); 
 	void SaveAll(ofstream &OutFile);
 	void LoadAll(string * );
-
+	void setVoice(bool);
+	bool getVoice();
 	void SaveType(ofstream &OutFile, string);
 	void delfigure(CFigure *);
 	void SendBack(CFigure *);

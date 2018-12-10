@@ -5,6 +5,8 @@
 
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
+#include <Windows.h>
+#include <MMSystem.h>
 
 AddRhombusAction::AddRhombusAction(ApplicationManager * pApp):Action(pApp)
 {}
@@ -14,6 +16,9 @@ void AddRhombusAction::ReadActionParameters()
 	//Get a Pointer to the Input / Output Interfaces
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
+
+	if (pManager->getVoice())
+		PlaySound(TEXT("Rhombus.wav"), NULL, SND_SYNC);
 
 	pOut->PrintMessage("New Rhombus: Click at center");
 	

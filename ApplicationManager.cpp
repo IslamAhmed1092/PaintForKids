@@ -15,7 +15,7 @@
 #include "Figures\CFigure.h"
 #include "Actions\BringFrontAction.h"
 #include "Actions\SendBackAction.h"
-
+#include "Actions\VoiceAction.h"
 #define MAXSPACE 25
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -24,6 +24,7 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output;
 	pIn = pOut->CreateInput();
 	SelectedFig = NULL;
+	Voice = false;
 	FigCount = 0;
 		
 	//Create an array of figure pointers and set them to NULL		
@@ -99,6 +100,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case FT:
 			pAct = new BringFrontAction(this);
 			break;
+		case VC:
+			pAct = new VoiceAction(this);
+			break;
 		case EXIT:
 			break;
 		case STATUS:	//a click on the status bar ==> no action
@@ -155,6 +159,16 @@ void ApplicationManager::SelectFig(CFigure* pFig)
 CFigure *ApplicationManager::GetSelected()
 {
 	return SelectedFig;
+}
+
+void ApplicationManager::setVoice(bool b)
+{
+	Voice = b;
+}
+
+bool ApplicationManager::getVoice()
+{
+	return Voice;
 }
 
 void ApplicationManager::SaveAll(ofstream &OutFile)
