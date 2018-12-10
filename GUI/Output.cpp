@@ -253,7 +253,7 @@ void Output::DrawLine(Point P1, Point P2, GfxInfo LineGfxInfo,bool selected) con
 		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
 	else			
 		DrawingClr = LineGfxInfo.DrawClr;
-	pWind->SetPen(DrawingClr,1);
+	pWind->SetPen(DrawingClr,3);
 	drawstyle style;	
 		style = FRAME;
 	pWind->DrawLine(P1.x, P1.y, P2.x, P2.y, style);
