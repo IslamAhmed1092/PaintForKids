@@ -66,6 +66,18 @@ string CRectangle::Type()
 {
 	return "RECTANGLE";
 }
+
+int CRectangle::GetCx ()
+{
+	int cx=((Corner1.x-Corner2.x))/2;
+	return cx;
+}
+int CRectangle::GetCy ()
+{
+	int cy=((Corner1.y-Corner2.y))/2;
+        return cy;
+}
+
 void CRectangle::Load(string filename,int pos) 
  {
 	string STRING[200];

@@ -18,6 +18,8 @@ public:
 	void Save(ofstream &OutFile);
 	void PrintInfo(Output* pOut);
 	virtual string Type();
+	virtual int GetCx ();
+	virtual int GetCy ();
 };
 
 #endif

@@ -13,9 +13,17 @@
 #include "GUI\UI_Info.h"
 #include "Actions\LoadAction.h"
 #include "Figures\CFigure.h"
+#include "Figures\CEllipse.h"
+#include "Figures\CLine.h"
+#include "Figures\CRectangle.h"
+#include "Figures\CRhombus.h"
+#include "Figures\CTri.h"
 #include "Actions\BringFrontAction.h"
 #include "Actions\SendBackAction.h"
 #include "Actions\VoiceAction.h"
+#include "Actions\CopyFigAction.h"
+#include "Actions\PasteAction.h"
+
 #define MAXSPACE 25
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -24,6 +32,7 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output;
 	pIn = pOut->CreateInput();
 	SelectedFig = NULL;
+	Clipboard=NULL;
 	Voice = false;
 	FigCount = 0;
 		
@@ -84,6 +93,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case DEL:
 			pAct=new delfigAction (this);
+			break;
+		case COPY:
+			pAct=new CopyFigAction(this);
+			break;
+		case PASTE:
+			pAct=new PasteAction(this);
 			break;
 		case LOAD:
 			pAct= new LoadAction (this);
@@ -208,6 +223,90 @@ void ApplicationManager::SaveType(ofstream &OutFile, string type)
 			FigList[i]->Save(OutFile);
 	}
 }
+
+void ApplicationManager::copyfigure(CFigure* cfig)
+{
+		for (int i = 0; i < FigCount; i++)
+		if(FigList[i] == cfig)
+		{	Clipboard = FigList[i];  break; }
+}
+
+void ApplicationManager::pastefigure(CFigure* cfig)
+{
+	Point P1;
+	CFigure *pst;
+	pOut->PrintMessage("Please, click new cerntre point of figure");
+	pIn->GetPointClicked(P1.x, P1.y);
+	int xc=P1.x;
+	int yc=P1.y;
+
+	if(dynamic_cast<CEllipse*>(cfig)) //Done
+	{
+		CEllipse *c=new CEllipse(P1,cfig->GetGfx());
+		AddFigure(c);
+	}
+	else if(dynamic_cast<CTri*>(cfig)) //Done    
+	{
+    int cxx=cfig->GetCx();
+	int cyy=cfig->GetCy();
+	int deltax,deltay;
+	deltax=xc-cxx;
+	deltay=yc-cyy;
+	Point t1,t2,t3;
+	t1=cfig->GetP1();
+	t2=cfig->GetP2();
+	t3=cfig->GetP3();
+	t1.x+=deltax;
+	t2.x+=deltax;
+	t3.x+=deltax;
+	t1.y+=deltay;
+	t2.y+=deltay;
+	t3.y+=deltay;
+	CTri *t=new CTri(t1,t2,t3,cfig->GetGfx());
+	AddFigure(t);
+	}
+	else if(dynamic_cast<CLine*>(cfig))   //Done
+	{
+		int cxx=cfig->GetCx();
+		int cyy=cfig->GetCy();
+		int p1x=xc+cxx;
+		int p1y=yc+cyy;
+		int p2x=xc-cxx;
+		int p2y=yc-cyy;
+		Point Pl1,Pl2;
+		Pl1.x=p1x;
+		Pl1.y=p1y;
+		Pl2.x=p2x;
+		Pl2.y=p2y;
+		CLine *l=new CLine(Pl1,Pl2,cfig->GetGfx());
+		AddFigure(l);
+	}
+	else if(dynamic_cast<CRectangle*>(cfig)) //Done
+	{
+        int cxx=cfig->GetCx();
+		int cyy=cfig->GetCy();
+		int p1x=xc+cxx;
+		int p1y=yc+cyy;
+		int p2x=xc-cxx;
+		int p2y=yc-cyy;
+		Point Pl1,Pl2;
+		Pl1.x=p1x;
+		Pl1.y=p1y;
+		Pl2.x=p2x;
+		Pl2.y=p2y;
+		CRectangle *r=new CRectangle(Pl1,Pl2,cfig->GetGfx());
+		AddFigure(r);
+	}
+	else if(dynamic_cast<CRhombus*>(cfig)) //Done
+	{
+		CRhombus *rh=new CRhombus(P1,cfig->GetGfx());
+		AddFigure(rh);
+	}
+
+}
+
+CFigure* ApplicationManager::GetClipboard() {return Clipboard; } 
+
 void ApplicationManager::delfigure(CFigure * dFig)
 {
 	int i;
@@ -238,7 +337,7 @@ void ApplicationManager::SendBack(CFigure* pfigure)
 		{
 			temp = FigList[i];
 			for(i; i > 0; i--)
-				FigList[i] = FigList[i-1];
+			FigList[i] = FigList[i-1];
 			FigList[0] = temp;
 			temp = NULL;
 			break;

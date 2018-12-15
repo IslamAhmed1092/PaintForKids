@@ -26,7 +26,9 @@ public:
 	void SetSelected(bool s);	//select/unselect the figure
 	bool IsSelected() const;	//check whether fig is selected
 	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
-     void notfilled() ;
+    void notfilled() ;
+	GfxInfo GetGfx();
+	
 	
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
@@ -38,6 +40,11 @@ public:
 	virtual bool check(int, int) = 0;
 	virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 	virtual string Type() = 0;
+	virtual int GetCx ()=0;
+	virtual int GetCy ()=0;
+	virtual Point GetP1();
+	virtual Point GetP2();
+	virtual Point GetP3();
 };
 
 //global function

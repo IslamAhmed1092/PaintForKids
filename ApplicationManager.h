@@ -45,9 +45,12 @@ public:
 	void setVoice(bool);
 	bool getVoice();
 	void SaveType(ofstream &OutFile, string);
+	void copyfigure(CFigure* cfig);
+	void pastefigure(CFigure* cfig);
 	void delfigure(CFigure *);
 	void SendBack(CFigure *);
 	void BringFront(CFigure *);
+	CFigure* GetClipboard ();
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output

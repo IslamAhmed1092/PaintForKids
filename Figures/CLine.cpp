@@ -53,6 +53,7 @@ void CLine::PrintInfo(Output* pOut)
 	pOut->PrintMessage(info);
 }
 
+
 void CLine::Save(ofstream &OutFile)
 {
 	string filled = (FigGfxInfo.isFilled)? StringColor(FigGfxInfo.FillClr) : "NO_FILL";
@@ -60,6 +61,16 @@ void CLine::Save(ofstream &OutFile)
 		+ "   " + to_string(Corner1.x) + "    " + to_string(Corner1.y) + "    " 
 		+ "   " + to_string(Corner2.x) + "    " + to_string(Corner2.y) + "    " 
 		+ StringColor(FigGfxInfo.DrawClr) + "     " +  filled + "\n" ;
+}
+int CLine:: GetCx ()
+{
+	int cx=((Corner1.x-Corner2.x))/2;
+	return cx;
+}
+int CLine:: GetCy ()
+{
+		int cy=((Corner1.y-Corner2.y))/2;
+        return cy;
 }
 
 string CLine::Type()

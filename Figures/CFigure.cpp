@@ -8,7 +8,11 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
 }
+GfxInfo CFigure:: GetGfx() {return FigGfxInfo;}
 
+Point CFigure::GetP1(){Point p ;return p; }
+Point CFigure::GetP2(){Point p ;return p; }
+Point CFigure::GetP3(){Point p ;return p; }
 void CFigure::SetSelected(bool s)
 {	Selected = s; }
 bool CFigure::IsSelected() const

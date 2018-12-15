@@ -78,6 +78,9 @@ string CRhombus::Type()
 {
 	return "RHOMBUS";
 }
+int CRhombus::GetCx () {return 0;}
+int CRhombus::GetCy () {return 0;}
+
 void CRhombus::Load(string filename,int pos) 
  {
 	string STRING[200];

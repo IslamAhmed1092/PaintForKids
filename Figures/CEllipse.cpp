@@ -25,6 +25,8 @@ void CEllipse::PrintInfo(Output* pOut)
 		+ StringColor(FigGfxInfo.DrawClr) ;
 	pOut->PrintMessage(info);
 }
+int CEllipse:: GetCx () {return 0;}
+int CEllipse:: GetCy () {return 0;}
 
 void CEllipse::Save(ofstream &OutFile)
 {

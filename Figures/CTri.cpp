@@ -66,6 +66,18 @@ string CTri::Type()
 {
 	return "TRIANGLE";
 }
+int CTri :: GetCx ()
+{
+	return ((Corner1.x+Corner2.x+Corner3.x))/3;
+}
+int CTri :: GetCy ()
+{
+	return ((Corner1.y+Corner2.y+Corner3.y))/3;
+}
+Point CTri:: GetP1(){return Corner1;}
+Point CTri:: GetP2(){return Corner2;}
+Point CTri:: GetP3(){return Corner3;}
+
 void CTri::Load(string filename,int pos) 
  {
 	string STRING[200];

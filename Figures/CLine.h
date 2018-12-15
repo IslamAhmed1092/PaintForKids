@@ -16,10 +16,11 @@ public:
 	virtual void Draw(Output* pOut) const;
 
 	virtual void Load(string filename,int pos);
-
 	void Save(ofstream &OutFile);
 	void PrintInfo(Output* pOut);
 	virtual string Type();
+	virtual int GetCx ();
+	virtual int GetCy ();
 };
 
 #endif

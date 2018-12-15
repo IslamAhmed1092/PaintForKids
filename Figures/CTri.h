@@ -20,6 +20,11 @@ public:
 	void Save(ofstream &OutFile);
 	void PrintInfo(Output* pOut);
 	virtual string Type();
+	virtual int GetCx ();
+    virtual int GetCy ();
+	virtual Point GetP1();
+	virtual Point GetP2();
+	virtual Point GetP3();
 
 };
 
