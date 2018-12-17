@@ -23,7 +23,8 @@
 #include "Actions\VoiceAction.h"
 #include "Actions\CopyFigAction.h"
 #include "Actions\PasteAction.h"
-
+#include "Actions\ChngDrawAction.h"
+#include "Actions\ChngFillAction.h"
 #define MAXSPACE 25
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -108,6 +109,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case SAVE_BY_TYPE:
 			pAct = new SaveTypeAction(this);
+			break;
+		case CHNG_DRAW_CLR:
+			pAct = new ChngDrawAction(this);
+			break;
+		case CHNG_FILL_CLR:
+			pAct = new ChngFillAction(this);
 			break;
 		case BK:
 			pAct = new SendBackAction(this);

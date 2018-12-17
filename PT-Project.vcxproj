@@ -133,6 +133,8 @@
     <ClCompile Include="Actions\AddRhombusAction.cpp" />
     <ClCompile Include="Actions\AddTriAction.cpp" />
     <ClCompile Include="Actions\BringFrontAction.cpp" />
+    <ClCompile Include="Actions\ChngDrawAction.cpp" />
+    <ClCompile Include="Actions\ChngFillAction.cpp" />
     <ClCompile Include="Actions\CopyFigAction.cpp" />
     <ClCompile Include="Actions\delfigAction.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
@@ -198,6 +200,8 @@
     <ClInclude Include="Actions\AddRhombusAction.h" />
     <ClInclude Include="Actions\AddTriAction.h" />
     <ClInclude Include="Actions\BringFrontAction.h" />
+    <ClInclude Include="Actions\ChngDrawAction.h" />
+    <ClInclude Include="Actions\ChngFillAction.h" />
     <ClInclude Include="Actions\CopyFigAction.h" />
     <ClInclude Include="Actions\delfigAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
