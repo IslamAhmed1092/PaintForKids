@@ -209,8 +209,6 @@ void ApplicationManager::LoadAll(ifstream &file,string filename)
 	string STRING[200];
 	int i=0;
 	bool empty=false; 
-   if (file.is_open())
-   {
         while(!file.eof()) // To get you all the lines.
         {
 			
@@ -274,13 +272,6 @@ void ApplicationManager::LoadAll(ifstream &file,string filename)
 		i++;
 		 }	
 
-    }
-   else 
-   {
-	   pOut->PrintMessage("there is no file "+filename+"    Press ENTER to continue");
-	   pIn->GetSrting(pOut);
-	   pOut->ClearStatusBar();
-   }
 }
 
 void ApplicationManager::SaveType(ofstream &OutFile, string type)

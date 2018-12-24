@@ -29,13 +29,21 @@ void LoadAction::ReadActionParameters()
 void LoadAction::Execute() 
 {
 	Output* pOut = pManager->GetOutput();
-
+	Input* pIn = pManager->GetInput();
 	ReadActionParameters();
 	file.open (filename);
-	pManager->LoadAll(file,filename); 
-	file.close();
-	pOut->PrintMessage("File is loaded!");
-
+	if (file.is_open())
+	{
+		pManager->LoadAll(file,filename);
+		file.close();
+		pOut->PrintMessage("File is loaded!");
+	}
+	else 
+	   {
+		   pOut->PrintMessage("there is no file "+filename+"    Press ENTER to continue");
+		   pIn->GetSrting(pOut);
+		   pOut->ClearStatusBar();
+	   }
 }
 LoadAction::~LoadAction()
 {
