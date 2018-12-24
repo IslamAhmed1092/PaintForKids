@@ -36,7 +36,7 @@ ApplicationManager::ApplicationManager()
 	Clipboard=NULL;
 	Voice = false;
 	FigCount = 0;
-		
+	count=0; 
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
@@ -202,16 +202,85 @@ void ApplicationManager::SaveAll(ofstream &OutFile)
 		FigList[i]->Save(OutFile);
 	}
 }
-void ApplicationManager::LoadAll(string * alldata)
+void ApplicationManager::LoadAll(ifstream &file,string filename)
 {
-	int count = atoi(alldata[1].c_str());
-	for (int i = 2; i <= count; i++)
-	{
-		//if (alldata[i].find("Line"))
-		
+	Output* pOut =GetOutput();
+	Input* pIn = GetInput();
+	string STRING[200];
+	int i=0;
+	bool empty=false; 
+   if (file.is_open())
+   {
+        while(!file.eof()) // To get you all the lines.
+        {
+			
+			getline(file,STRING[i]); // Saves the line in STRING.
+			if (i<2)
+			{
+				i++;
+				continue;
+			}
+			if(STRING[2]=="")
+			{
+				pOut->PrintMessage("this file is empty    press ENTER to contiue");
+				pIn->GetSrting(pOut);
+				pOut->ClearStatusBar();
+				empty=true;
+				break;
+			}
+		 if (!empty)
+		 {
+			 deletallfig();
+			 pOut->ClearDrawArea();
+			 empty=true;
+		 }
+		   if (STRING[i].find("LINE")!=-1)
+				{
+				fig[count]=new CLine;
+				fig[count]->Load(filename,i);
+				AddFigure(fig[count]);
+				count++;
+
+		   }
+		   else if(STRING[i].find("RECT")!=-1)
+			{
+				fig[count]=new CRectangle;
+				fig[count]->Load(filename,i);
+				AddFigure(fig[count]);
+				count++;
+		   }
+		  else if(STRING[i].find("TRIANG")!=-1)
+		   {
+				fig[count]=new CTri;
+				fig[count]->Load(filename,i);
+				AddFigure(fig[count]);
+				count++;
+		   }
 	
-		//FigList[i]->Load(figdata);
-	}
+		  else if(STRING[i].find("ELLIPSE")!=-1)
+			{	
+				fig[count] = new CEllipse;
+	 			fig[count]->Load(filename,i);
+				AddFigure(fig[count]);
+				count++;
+			 }
+		  else if(STRING[i].find("RHOMBUS")!=-1)
+	     	{
+				fig[count] = new CRhombus;
+	   			fig[count]->Load(filename,i);
+				AddFigure(fig[count]);
+				count++;
+	}	                                          
+		i++;
+		 }	
+
+    }
+   else 
+   {
+	   pOut->PrintMessage("there is no file "+filename+"    Press ENTER to continue");
+	   pIn->GetSrting(pOut);
+	   pOut->ClearStatusBar();
+   }
 }
 
 void ApplicationManager::SaveType(ofstream &OutFile, string type)
@@ -309,11 +378,8 @@ void ApplicationManager::pastefigure(CFigure* cfig)
 		CRhombus *rh=new CRhombus(P1,cfig->GetGfx());
 		AddFigure(rh);
 	}
-
 }
-
 CFigure* ApplicationManager::GetClipboard() {return Clipboard; } 
-
 void ApplicationManager::delfigure(CFigure * dFig)
 {
 	int i;
@@ -393,6 +459,7 @@ ApplicationManager::~ApplicationManager()
 {
 	for(int i=0; i<FigCount; i++)
 		delete FigList[i];
+	        
 	delete pIn;
 	delete pOut;
 	

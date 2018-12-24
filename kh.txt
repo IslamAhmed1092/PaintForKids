@@ -1,0 +1,3 @@
+BLUE    GREEN
+1
+RECT    1   337    152       582    229    BLUE     NO_FILL

@@ -17,7 +17,8 @@ class ApplicationManager
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
-
+	CFigure * fig[MaxFigCount];
+	int count; 
 	CFigure* SelectedFig; //Pointer to the selected figure
 	CFigure* Clipboard;   //Pointer to the copied/cut figure
 	bool Voice;
@@ -41,7 +42,7 @@ public:
 	void SelectFig(CFigure*);
 	CFigure *GetSelected(); 
 	void SaveAll(ofstream &OutFile);
-	void LoadAll(string * );
+	void LoadAll(ifstream &file,string filename);
 	void setVoice(bool);
 	bool getVoice();
 	void SaveType(ofstream &OutFile, string);

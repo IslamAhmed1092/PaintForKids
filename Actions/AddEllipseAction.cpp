@@ -26,8 +26,7 @@ void AddEllipseAction::ReadActionParameters()
 	do
 	{
 	pIn->GetPointClicked(P1.x, P1.y);
-	}while  (P1.y<UI.ToolBarHeight+50);
-
+	}while  (P1.y<UI.ToolBarHeight+50||P1.y>UI.height-UI.StatusBarHeight-50||P1.x<UI.wx+100||P1.x>UI.width-115);
 
 	RectGfxInfo.isFilled = false;	//default is not filled
 	//get drawing, filling colors and pen width from the interface
