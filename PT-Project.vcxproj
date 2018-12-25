@@ -135,6 +135,7 @@
     <ClCompile Include="Actions\BringFrontAction.cpp" />
     <ClCompile Include="Actions\ChngDrawAction.cpp" />
     <ClCompile Include="Actions\ChngFillAction.cpp" />
+    <ClCompile Include="Actions\ColourAction.cpp" />
     <ClCompile Include="Actions\CopyFigAction.cpp" />
     <ClCompile Include="Actions\delfigAction.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
@@ -145,6 +146,7 @@
     <ClCompile Include="Actions\SendBackAction.cpp" />
     <ClCompile Include="Actions\SwitchToDrawAction.cpp" />
     <ClCompile Include="Actions\SwitchToPlayAction.cpp" />
+    <ClCompile Include="Actions\TypeAction.cpp" />
     <ClCompile Include="Actions\VoiceAction.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
@@ -202,6 +204,7 @@
     <ClInclude Include="Actions\BringFrontAction.h" />
     <ClInclude Include="Actions\ChngDrawAction.h" />
     <ClInclude Include="Actions\ChngFillAction.h" />
+    <ClInclude Include="Actions\ColourAction.h" />
     <ClInclude Include="Actions\CopyFigAction.h" />
     <ClInclude Include="Actions\delfigAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
@@ -212,6 +215,7 @@
     <ClInclude Include="Actions\SendBackAction.h" />
     <ClInclude Include="Actions\SwitchToDrawAction.h" />
     <ClInclude Include="Actions\SwitchToPlayAction.h" />
+    <ClInclude Include="Actions\TypeAction.h" />
     <ClInclude Include="Actions\VoiceAction.h" />
     <ClInclude Include="CMUgraphicsLib\auxil.h" />
     <ClInclude Include="CMUgraphicsLib\CMUgraphics.h" />

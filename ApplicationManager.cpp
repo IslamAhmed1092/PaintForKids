@@ -25,6 +25,9 @@
 #include "Actions\PasteAction.h"
 #include "Actions\ChngDrawAction.h"
 #include "Actions\ChngFillAction.h"
+#include "Actions\TypeAction.h"
+#include "Actions\ColourAction.h"
+#include <time.h>
 #define MAXSPACE 25
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -125,6 +128,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case VC:
 			pAct = new VoiceAction(this);
 			break;
+		case PICK_TYPE:
+			pAct = new TypeAction(this);
+			break;
+		case PICK_COLOR:
+			pAct = new ColourAction(this);
+			break;
 		case EXIT:
 			break;
 		case STATUS:	//a click on the status bar ==> no action
@@ -202,6 +211,70 @@ void ApplicationManager::SaveAll(ofstream &OutFile)
 		FigList[i]->Save(OutFile);
 	}
 }
+
+CFigure* ApplicationManager::GetRandomFigure(ActionType act) const
+{
+
+	CFigure* RandomFig;
+	int randomindex;
+	GfxInfo info;
+	if(act==PICK_TYPE)
+	{
+		if(FigCount==0)
+			return NULL;
+		randomindex=rand()%FigCount;
+		RandomFig=FigList[randomindex];
+		return RandomFig;
+	}
+
+	if(act==PICK_COLOR)
+	{
+		if(FigCount==0)
+			return NULL;
+		int i;
+		for( i=0;i<FigCount;i++)
+		{
+			info = FigList[i]->GetGfx();
+			if(info.isFilled==true)
+				break;
+		}
+		if(i==FigCount)		//this means that there is no Filled shapes in the Figlist
+			return NULL;
+		do
+		{
+		randomindex=rand()%FigCount;
+		RandomFig=FigList[randomindex];
+		info = FigList[randomindex]->GetGfx();
+		if(info.isFilled)
+			return RandomFig;
+		}while(true);
+		
+	}
+}
+
+int ApplicationManager:: RandomFigureCount(ActionType act,CFigure* Rand)
+{
+	int Nu=0;
+	if(act==PICK_TYPE)
+	{
+		for(int i=0; i<FigCount ;i++)
+			if(FigList[i]->Type() == Rand->Type())
+				Nu++;
+		return Nu;
+	}
+	if(act==PICK_COLOR)
+	{
+		for(int j=0;j<FigCount;j++)
+		{
+			if((FigList[j]->GetGfx().FillClr==Rand->GetGfx().FillClr) && FigList[j]->GetGfx().isFilled)
+				Nu++;
+		}
+		return Nu;
+	}
+	return Nu;
+}
+
+
 void ApplicationManager::LoadAll(ifstream &file,string filename)
 {
 	Output* pOut =GetOutput();

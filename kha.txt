@@ -1,5 +1,0 @@
-BLUE    GREEN
-3
-ELLIPSE   1   296    129    BLUE     NO_FILL
-TRIANG    2   307    242       563    304       302    422    BLUE     NO_FILL
-LINE   3   773    338       652    209    BLUE     BLACK

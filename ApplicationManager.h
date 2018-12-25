@@ -45,6 +45,8 @@ public:
 	void LoadAll(ifstream &file,string filename);
 	void setVoice(bool);
 	bool getVoice();
+	CFigure* GetRandomFigure(ActionType act) const;
+	int RandomFigureCount(ActionType act,CFigure* Rand);
 	void SaveType(ofstream &OutFile, string);
 	void copyfigure(CFigure* cfig);
 	void pastefigure(CFigure* cfig);

@@ -185,6 +185,37 @@ ActionType Input::GetUserAction() const
 	}	
 
 }
+
+ActionType Input::GetUserAction(Point p) const
+{	
+	if ( p.y >= 0 && p.y < UI.ToolBarHeight)
+	{	
+		//Check whick Menu item was clicked
+		//==> This assumes that menu items are lined up horizontally <==
+		int ClickedItemOrder = (p.x / UI.MenuItemWidth);
+		//Divide x coord of the point clicked by the menu item width (int division)
+		//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
+
+		switch (ClickedItemOrder)
+		{
+		case ITM_PT: return PICK_TYPE;
+		case ITM_PC: return PICK_COLOR;
+		case ITM_SWOFF: return TO_DRAW;
+			
+		default: return EMPTY;	//A click on empty place in desgin toolbar
+		}
+	}
+
+	//[2] User clicks on the drawing area
+	if ( p.y >= UI.ToolBarHeight && p.y < UI.height - UI.StatusBarHeight)
+	{
+		return DRAWING_AREA;	
+	}
+		
+	//[3] User clicks on the status bar
+	return STATUS;
+}	
+
 /////////////////////////////////
 	
 Input::~Input()

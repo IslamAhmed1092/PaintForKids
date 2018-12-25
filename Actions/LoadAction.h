@@ -12,7 +12,6 @@ private:
 	int count;
 	ifstream file;
 public:
-	LoadAction(string file);
 	LoadAction(ApplicationManager *pApp);
 	virtual void ReadActionParameters();
 	virtual void Execute() ;

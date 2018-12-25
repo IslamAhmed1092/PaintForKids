@@ -8,11 +8,7 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 #include "delfigAction.h"
-LoadAction::LoadAction(string file)
-{ 
-	filename=file;
-	count = 0;	
-}
+
 LoadAction::LoadAction(ApplicationManager *pApp):Action(pApp)
 {
 	count=0; 
@@ -39,11 +35,11 @@ void LoadAction::Execute()
 		pOut->PrintMessage("File is loaded!");
 	}
 	else 
-	   {
-		   pOut->PrintMessage("there is no file "+filename+"    Press ENTER to continue");
-		   pIn->GetSrting(pOut);
-		   pOut->ClearStatusBar();
-	   }
+	{
+		pOut->PrintMessage("there is no file "+filename+"    Press ENTER to continue");
+		pIn->GetSrting(pOut);
+		pOut->ClearStatusBar();
+	}
 }
 LoadAction::~LoadAction()
 {

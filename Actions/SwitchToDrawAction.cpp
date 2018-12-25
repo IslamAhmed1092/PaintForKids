@@ -14,6 +14,10 @@ void SwitchToDrawAction::ReadActionParameters()
 
 void SwitchToDrawAction::Execute()
 {
+	ifstream graph;
+	graph.open("Graph.txt");
+	pManager->LoadAll(graph, "Graph.txt");
+	graph.close();
 	Output* pOut = pManager->GetOutput();
 
 	pOut->ClearToolBar();

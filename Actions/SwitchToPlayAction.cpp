@@ -15,7 +15,10 @@ void SwitchToPlayAction::ReadActionParameters()
 void SwitchToPlayAction::Execute()
 {
 	Output* pOut = pManager->GetOutput();
-
+	ofstream outFile;
+	outFile.open("Graph.txt");
+	pManager->SaveAll(outFile);
+	outFile.close();
 	pOut->ClearToolBar();
 	pOut->CreatePlayToolBar();
 }

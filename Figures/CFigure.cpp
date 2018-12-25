@@ -30,7 +30,6 @@ void CFigure::ChngFillClr(color Fclr)
 	FigGfxInfo.FillClr = Fclr; 
 }
 
-
 string StringColor(color clr)
 {
 	if (clr == RED)
