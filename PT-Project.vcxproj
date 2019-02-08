@@ -137,6 +137,7 @@
     <ClCompile Include="Actions\ChngFillAction.cpp" />
     <ClCompile Include="Actions\ColourAction.cpp" />
     <ClCompile Include="Actions\CopyFigAction.cpp" />
+    <ClCompile Include="Actions\CutAction.cpp" />
     <ClCompile Include="Actions\delfigAction.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="Actions\PasteAction.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="Actions\ChngFillAction.h" />
     <ClInclude Include="Actions\ColourAction.h" />
     <ClInclude Include="Actions\CopyFigAction.h" />
+    <ClInclude Include="Actions\CutAction.h" />
     <ClInclude Include="Actions\delfigAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\PasteAction.h" />

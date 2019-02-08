@@ -22,6 +22,7 @@
 #include "Actions\SendBackAction.h"
 #include "Actions\VoiceAction.h"
 #include "Actions\CopyFigAction.h"
+#include "Actions\CutAction.h"
 #include "Actions\PasteAction.h"
 #include "Actions\ChngDrawAction.h"
 #include "Actions\ChngFillAction.h"
@@ -100,6 +101,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case COPY:
 			pAct=new CopyFigAction(this);
+			break;
+		case CUT:
+			pAct=new CutAction(this);
 			break;
 		case PASTE:
 			pAct=new PasteAction(this);
@@ -364,85 +368,85 @@ void ApplicationManager::SaveType(ofstream &OutFile, string type)
 	}
 }
 
+
 void ApplicationManager::copyfigure(CFigure* cfig)
 {
 		for (int i = 0; i < FigCount; i++)
-		if(FigList[i] == cfig)
-		{	Clipboard = FigList[i];  break; }
+		if(FigList[i] == cfig)                 //receiving figure from CopyClass
+		{	Clipboard = FigList[i];  break; }   //Store figure in ClipBoard
+}
+
+void ApplicationManager::cutfigure(CFigure* cfig)
+{
+
+       for (int i = 0; i < FigCount; i++)
+		if(FigList[i] == cfig)                  //receiving figure from CopyClass
+      {	
+		Clipboard = FigList[i];                 //Store figure in ClipBoard
+        cfig->setgfxold(cfig->GetGfx());        //storing all GFX info. of figure before changing color to GREY 
+        FigList[i]->ChngFillClr(GREY);          //Changing FillColor to Grey 
+		FigList[i]->ChngDrawClr(GREY);         //Changing DrawColor to Grey
+         break; 
+      }
 }
 
 void ApplicationManager::pastefigure(CFigure* cfig)
 {
-	Point P1;
-	CFigure *pst;
-	pOut->PrintMessage("Please, click new cerntre point of figure");
-	pIn->GetPointClicked(P1.x, P1.y);
-	int xc=P1.x;
-	int yc=P1.y;
-
-	if(dynamic_cast<CEllipse*>(cfig)) //Done
-	{
-		CEllipse *c=new CEllipse(P1,cfig->GetGfx());
-		AddFigure(c);
-	}
-	else if(dynamic_cast<CTri*>(cfig)) //Done    
-	{
-    int cxx=cfig->GetCx();
-	int cyy=cfig->GetCy();
-	int deltax,deltay;
-	deltax=xc-cxx;
-	deltay=yc-cyy;
-	Point t1,t2,t3;
-	t1=cfig->GetP1();
-	t2=cfig->GetP2();
-	t3=cfig->GetP3();
-	t1.x+=deltax;
-	t2.x+=deltax;
-	t3.x+=deltax;
-	t1.y+=deltay;
-	t2.y+=deltay;
-	t3.y+=deltay;
-	CTri *t=new CTri(t1,t2,t3,cfig->GetGfx());
-	AddFigure(t);
-	}
-	else if(dynamic_cast<CLine*>(cfig))   //Done
-	{
-		int cxx=cfig->GetCx();
-		int cyy=cfig->GetCy();
-		int p1x=xc+cxx;
-		int p1y=yc+cyy;
-		int p2x=xc-cxx;
-		int p2y=yc-cyy;
-		Point Pl1,Pl2;
-		Pl1.x=p1x;
-		Pl1.y=p1y;
-		Pl2.x=p2x;
-		Pl2.y=p2y;
-		CLine *l=new CLine(Pl1,Pl2,cfig->GetGfx());
-		AddFigure(l);
-	}
-	else if(dynamic_cast<CRectangle*>(cfig)) //Done
-	{
-        int cxx=cfig->GetCx();
-		int cyy=cfig->GetCy();
-		int p1x=xc+cxx;
-		int p1y=yc+cyy;
-		int p2x=xc-cxx;
-		int p2y=yc-cyy;
-		Point Pl1,Pl2;
-		Pl1.x=p1x;
-		Pl1.y=p1y;
-		Pl2.x=p2x;
-		Pl2.y=p2y;
-		CRectangle *r=new CRectangle(Pl1,Pl2,cfig->GetGfx());
-		AddFigure(r);
-	}
-	else if(dynamic_cast<CRhombus*>(cfig)) //Done
-	{
-		CRhombus *rh=new CRhombus(P1,cfig->GetGfx());
-		AddFigure(rh);
-	}
+	Point P1;                                                              //centre point of the paste figure           
+	pOut->PrintMessage("Please, click new cerntre point of figure to paste it"); //invoke user to click the point
+	pIn->GetPointClicked(P1.x, P1.y);                                           
+	int xc=P1.x;                                                                   //x coordinate of new centre                                                 
+	int yc=P1.y;                                                                   //y coordinate of new centre
+	
+if(dynamic_cast<CEllipse*>(cfig))                                           //checking type of figure
+{  
+	if(cfig->GetColor()==GREY)                                             //check if figure is in cut order
+	{cfig->setgfx(cfig->getgfxold());                                     //get old GFX info before changing color to Grey
+	CEllipse *c=new CEllipse(P1,cfig->GetGfx()); 
+	AddFigure(c); delfigure(cfig); Clipboard=NULL;}                       //creating the new figure and deleting the old one
+	else { CEllipse *c=new CEllipse(P1,cfig->GetGfx()); AddFigure(c); }  //if figure is copied
 }
+else if(dynamic_cast<CTri*>(cfig))                                      //same on other figures
+{
+	if(cfig->GetColor()==GREY) {cfig->setgfx(cfig->getgfxold()); int cxx=cfig->GetCx(); int cyy=cfig->GetCy(); 
+	int deltax,deltay; deltax=xc-cxx; deltay=yc-cyy; Point t1,t2,t3; t1=cfig->GetP1(); t2=cfig->GetP2(); t3=cfig->GetP3();
+	t1.x+=deltax; t2.x+=deltax; t3.x+=deltax; t1.y+=deltay; t2.y+=deltay; t3.y+=deltay;
+	CTri *t=new CTri(t1,t2,t3,cfig->GetGfx()); AddFigure(t); delfigure(cfig); Clipboard=NULL;}
+	else {int cxx=cfig->GetCx(); int cyy=cfig->GetCy(); int deltax,deltay;
+	deltax=xc-cxx; deltay=yc-cyy; Point t1,t2,t3; t1=cfig->GetP1(); t2=cfig->GetP2(); t3=cfig->GetP3();
+	t1.x+=deltax; t2.x+=deltax; t3.x+=deltax; t1.y+=deltay; t2.y+=deltay; t3.y+=deltay;
+	CTri *t=new CTri(t1,t2,t3,cfig->GetGfx()); AddFigure(t);}
+}
+else if(dynamic_cast<CLine*>(cfig))  
+{
+	 if(cfig->GetColor()==GREY) { cfig->setgfx(cfig->getgfxold()); int cxx=cfig->GetCx(); int cyy=cfig->GetCy();
+	int p1x=xc+cxx; int p1y=yc+cyy; int p2x=xc-cxx; int p2y=yc-cyy; Point Pl1,Pl2; Pl1.x=p1x; Pl1.y=p1y;
+	Pl2.x=p2x; Pl2.y=p2y; CLine *l=new CLine(Pl1,Pl2,cfig->GetGfx()); AddFigure(l); delfigure(cfig); Clipboard=NULL;}
+  else {int cxx=cfig->GetCx(); int cyy=cfig->GetCy();
+	int p1x=xc+cxx; int p1y=yc+cyy; int p2x=xc-cxx; int p2y=yc-cyy; Point Pl1,Pl2; Pl1.x=p1x; Pl1.y=p1y;
+	Pl2.x=p2x; Pl2.y=p2y; CLine *l=new CLine(Pl1,Pl2,cfig->GetGfx()); AddFigure(l); }
+}
+	else if(dynamic_cast<CRectangle*>(cfig)) 
+{ 
+	if(cfig->GetColor()==GREY) {cfig->setgfx(cfig->getgfxold()); int cxx=cfig->GetCx(); int cyy=cfig->GetCy(); 
+	int p1x=xc+cxx; int p1y=yc+cyy; int p2x=xc-cxx; int p2y=yc-cyy; Point Pl1,Pl2; Pl1.x=p1x; Pl1.y=p1y; Pl2.x=p2x;
+	Pl2.y=p2y; CRectangle *r=new CRectangle(Pl1,Pl2,cfig->GetGfx()); AddFigure(r); delfigure(cfig); Clipboard=NULL;}
+	else { int cxx=cfig->GetCx(); int cyy=cfig->GetCy(); int p1x=xc+cxx; int p1y=yc+cyy; int p2x=xc-cxx; 
+	int p2y=yc-cyy; Point Pl1,Pl2; Pl1.x=p1x; Pl1.y=p1y; Pl2.x=p2x;
+	Pl2.y=p2y; CRectangle *r=new CRectangle(Pl1,Pl2,cfig->GetGfx()); AddFigure(r);}
+}
+	else if(dynamic_cast<CRhombus*>(cfig)) 
+ {
+	if(cfig->GetColor()==GREY) { cfig->setgfx(cfig->getgfxold()); CRhombus *rh=new CRhombus(P1,cfig->GetGfx()); 
+	AddFigure(rh); delfigure(cfig); Clipboard=NULL; }
+	else
+	{  CRhombus *rh=new CRhombus(P1,cfig->GetGfx());  AddFigure(rh);}
+		  
+ }
+
+}
+
+
 CFigure* ApplicationManager::GetClipboard() {return Clipboard; } 
 void ApplicationManager::delfigure(CFigure * dFig)
 {

@@ -9,6 +9,7 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 	Selected = false;
 }
 GfxInfo CFigure:: GetGfx() {return FigGfxInfo;}
+color CFigure:: GetColor() {return FigGfxInfo.FillClr;}
 
 Point CFigure::GetP1(){Point p ;return p; }
 Point CFigure::GetP2(){Point p ;return p; }
@@ -29,6 +30,10 @@ void CFigure::ChngFillClr(color Fclr)
 	FigGfxInfo.isFilled = true;
 	FigGfxInfo.FillClr = Fclr; 
 }
+
+void CFigure:: setgfxold(GfxInfo old) {flag=old;}
+GfxInfo CFigure:: getgfxold() {return flag;}
+void CFigure:: setgfx(GfxInfo gf) {FigGfxInfo=gf;}
 
 string StringColor(color clr)
 {

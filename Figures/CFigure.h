@@ -18,7 +18,7 @@ protected:
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
 	/// Add more parameters if needed.
-
+	GfxInfo flag;
 public:
 	CFigure();
 	CFigure(GfxInfo FigureGfxInfo);
@@ -27,7 +27,8 @@ public:
 	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
     void notfilled() ;
 	GfxInfo GetGfx();
-	
+	color GetColor();
+
 	
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
@@ -44,6 +45,10 @@ public:
 	virtual Point GetP1();
 	virtual Point GetP2();
 	virtual Point GetP3();
+
+	void setgfxold(GfxInfo old);
+	GfxInfo getgfxold();
+	void setgfx(GfxInfo gf);
 };
 
 //global function

@@ -49,6 +49,7 @@ public:
 	int RandomFigureCount(ActionType act,CFigure* Rand);
 	void SaveType(ofstream &OutFile, string);
 	void copyfigure(CFigure* cfig);
+	void cutfigure(CFigure* cfig);
 	void pastefigure(CFigure* cfig);
 	void delfigure(CFigure *);
 	void SendBack(CFigure *);
